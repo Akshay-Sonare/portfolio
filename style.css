@@ -1,5 +1,5 @@
 /* ============================================
-   CSS VARIABLES - PostHog-Inspired Design System
+   CSS VARIABLES - Design System
    ============================================ */
 :root {
     /* Colors - Dark Theme (Default) */
@@ -66,7 +66,7 @@
 
 
 
-/* Smooth theme transitions */
+/* theme transitions */
 body {
     transition: background-color var(--transition-medium),
         color var(--transition-medium);
