@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // State management
     let engine, world, render, runner;
+    let ground, leftWall, rightWall;
     let hasDropped = false;
 
     // Skill icons metadata
