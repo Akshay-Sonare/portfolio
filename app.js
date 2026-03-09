@@ -52,6 +52,37 @@ window.addEventListener('scroll', () => {
 });
 
 // ============================================
+// NAVBAR ACTIVE SECTION HIGHLIGHT
+// ============================================
+const sectionIds = ['hero', 'about', 'timeline', 'projects', 'skills', 'personal', 'contact'];
+const sectionRatios = {};
+
+const navHighlightObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.target.id) sectionRatios[entry.target.id] = entry.intersectionRatio;
+        });
+        const activeId = Object.entries(sectionRatios).reduce(
+            (best, [id, ratio]) => (ratio > (sectionRatios[best] || 0) ? id : best),
+            'hero'
+        );
+        document.querySelectorAll('.nav-link').forEach((link) => {
+            const isActive = link.getAttribute('href') === `#${activeId}`;
+            link.classList.toggle('active', isActive);
+        });
+    },
+    {
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+        rootMargin: '-15% 0px -70% 0px'
+    }
+);
+
+sectionIds.forEach((id) => {
+    const section = document.getElementById(id);
+    if (section) navHighlightObserver.observe(section);
+});
+
+// ============================================
 // INTERSECTION OBSERVER FOR ANIMATIONS
 // ============================================
 const observerOptions = {
